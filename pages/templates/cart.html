@@ -1,0 +1,85 @@
+{% extends "template.html" %}
+{% block content %}
+    <section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<div class="table-responsive">
+						<table class="table cart">
+							<thead>
+								<tr>
+									<th class="cart-product-remove">&nbsp;</th>
+									<th class="cart-product-name">Product</th>
+									<th class="cart-product-price">Unit Price</th>
+								</tr>
+							</thead>
+							<tbody>
+							    {% for cart_product in cart_products %}
+
+								<tr class="cart_item">
+									<td  class="cart-product-remove">
+										<a href={% url 'remove_product' cart_product.id %} class="remove" title="Remove this item"><i class="icon-trash2"></i></a>
+									</td>
+
+									<td class="cart-product-name">
+										<a href={% url 'product' cart_product.product_id.id %}>{{cart_product.product_id.name}}</a>
+									</td>
+
+									<td class="cart-product-price">
+										<span class="amount">${{cart_product.product_id.price}}</span>
+									</td>
+
+								</tr>
+								    {% endfor %}
+
+								<tr class="cart_item">
+									<td colspan="4">
+										<div class="row clearfix">
+
+											<div class="col-lg-8 col-8 nopadding">
+												<a href="#" class="button button-3d nomargin fright">Update Cart</a>
+												<a href="shop.html" class="button button-3d notopmargin fright">Proceed to Checkout</a>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+					<div class="col-lg-6 clearfix">
+							<h4>Cart Totals</h4>
+
+							<div class="table-responsive">
+								<table class="table cart">
+									<tbody>
+										<tr class="cart_item">
+											<td class="cart-product-name">
+												<strong>Shipping</strong>
+											</td>
+
+											<td class="cart-product-name">
+												<span class="amount">Free Delivery</span>
+											</td>
+										</tr>
+										<tr class="cart_item">
+											<td class="cart-product-name">
+												<strong>Total</strong>
+											</td>
+
+											<td class="cart-product-name">
+												<span class="amount color lead"><strong>${{total_prices}}</strong></span>
+											</td>
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+						</div>
+				</div>
+			</div>
+
+		</section><!-- #content end -->
+{% endblock %}

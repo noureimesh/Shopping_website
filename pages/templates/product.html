@@ -1,0 +1,54 @@
+{% extends "template.html" %}
+{% block content %}
+
+<div class="single-product">
+    <div class="product">
+        <div class="row gutter-40">
+            <div class="col-md-6">
+                <div class="product-image">
+                    <img src="/static/{{ product.photo }}">
+                </div>
+            </div>
+
+            <div class="col-md-6 product-desc">
+
+                <div class="d-flex align-items-center justify-content-between">
+
+                    <!-- Product Single - Price
+                    ============================================= -->
+                    <div class="product-price">
+                        <h1>{{product.name}}</h1><ins>${{ product.price }}</ins>
+                    </div>
+                    <!-- Product Single - Price End -->
+
+                </div>
+
+                <div class="line"></div>
+
+                <!-- Product Single - Quantity & Cart Button
+                ============================================= -->
+                <form class="cart mb-0 d-flex justify-content-between align-items-center" method="post"
+                      action="{% url 'add_product' product.id %}"
+                    enctype='multipart/form-data'>
+                    {% csrf_token %}
+
+                    <button href={% url 'add_product' product.id %} type="submit" class="add-to-cart button m-0">Add to cart</button>
+                </form><!-- Product Single - Quantity & Cart Button End -->
+
+                <div class="line"></div>
+
+                <!-- Product Single - Short Description
+                ============================================= -->
+                <p>{{product.description}}</p>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <span class="text-muted">Quantity:</span><span
+                            class="text-dark fw-semibold">{{product.quantity}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
